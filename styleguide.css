@@ -1,15 +1,144 @@
-/*===========FONTS=========*/
+/*=================================FONTS============================*/
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&family=Poppins&display=swap");
 
-body {
-  line-height: 1.5;
-  font-family: "Raleway", sans-serif;
-  font-weight: 400;
+/* font-family: "Montserrat", sans-serif;
+font-family: "Poppins", sans-serif; */
+
+/*============================RESET CSS========================================*/
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
 }
-body.hidden-scrolling {
-  overflow-y: hidden;
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section,
+main {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+html {
+  font-size: 112.5%;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  color: #515151;
 }
 * {
   margin: 0;
@@ -27,14 +156,92 @@ ul {
 a {
   text-decoration: none;
 }
-/*=================HEADER=================*/
+/*=================================TYPOGRAPHY==============================================*/
+.title,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
+  text-transform: uppercase;
+  color: #313131;
+}
+
+.title {
+  font-size: 5.063em;
+  font-weight: 700;
+}
+
+h1 {
+  font-size: 3.75em;
+  line-height: 1.25em;
+}
+
+h2 {
+  font-size: 3.75em;
+  font-weight: 600;
+  line-height: 1em;
+  text-transform: capitalize;
+  margin-top: 20px;
+  display: inline;
+
+  padding-bottom: 10px;
+}
+
+h3 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 3.75em;
+  font-weight: 600;
+  line-height: 1em;
+  text-transform: capitalize;
+  margin-top: 20px;
+  display: inline;
+  padding-bottom: 10px;
+}
+
+h4 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1em;
+  text-transform: capitalize;
+  text-transform: italic;
+}
+
+h5 {
+  font-size: 667em;
+  font-weight: 300;
+  text-transform: capitalize;
+}
+
+h6 {
+  font-size: 444em;
+  font-weight: 600;
+}
+
+p {
+  font-size: 1em;
+  line-height: 1.55em;
+  margin: 30px 0 15px 0;
+}
+
+.container {
+  width: 100%;
+  margin: 40px auto;
+}
+
+/* DIVIDE SPACE */
+
+/* ============================HEADER============================ */
+
 .header {
   position: absolute;
   width: 100%;
   left: 0;
   top: 0;
   z-index: 99;
-  padding: 15px;
+  padding: 10px;
 }
 .header-main {
   background-color: #ffffff;
@@ -196,7 +403,40 @@ a {
   transition: all 0.3s ease;
 }
 
-/* responsive */
+/*============================ HERO=========================================*/
+#hero-wrapper {
+  width: 100%;
+  background-color: #ffffff;
+}
+
+#hero {
+  width: 80%;
+  height: 100vh;
+  text-align: center;
+  color: #ffffff;
+  margin: auto;
+  overflow: hidden;
+  padding: 160px 0 100px 0;
+}
+
+#hero h2 {
+  color: #000000;
+  line-height: 1em;
+  letter-spacing: 2px;
+}
+
+#hero h2 span {
+  font-size: 0.3em;
+}
+
+#hero p {
+  max-width: 480px;
+  font-size: 7.95em;
+  margin: 0 auto;
+  text-align: left;
+}
+
+/*=======================RESPONSIVE CODE=====================================*/
 
 @media (max-width: 991px) {
   .header .menu-overlay.active {
@@ -269,72 +509,3 @@ a {
     display: flex;
   }
 }
-
-/* =====================HOME======================= */
-
-.home {
-  position: relative;
-  height: 100vh;
-}
-
-.home-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 750px;
-  object-fit: cover;
-  object-position: center;
-}
-
-.home-container {
-  position: relative;
-  padding-top: 3rem;
-  row-gap: 3rem;
-}
-
-.home-data {
-  text-align: center;
-}
-
-.home-sub {
-  font-size: 1.25rem;
-  margin-bottom: 0.5rem;
-}
-
-.home-title {
-  font-size: 2.75rem;
-  margin-bottom: 1rem;
-}
-
-.home-description {
-  margin-bottom: 2rem;
-  color: #000000;
-}
-
-/*============BUTTON===================*/
-
-.button {
-  background-color: #eee6e5;
-  padding: 1.25rem 1.5rem;
-  color: #000000;
-  display: inline-flex;
-  align-items: center;
-  column-gap: 5rem;
-  font-family: "Montserrat", sans-serif;
-  font-weight: 600;
-  backdrop-filter: blur (24px);
-  -webkit-backdrop-filter: blur (24px); /* For safari */
-}
-
-.button i {
-  font-size: 1.25rem;
-  transition: transform 4s;
-  font-weight: initial;
-}
-
-.button:hover i {
-  transform: translateX.25rem;
-}
-
-/*========OVERVIEW SECTION=========*/
