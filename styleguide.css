@@ -4,7 +4,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&family=Poppins&display=swap");
 
 /* font-family: "Montserrat", sans-serif;
-font-family: "Poppins", sans-serif; */
+font-family: "Poppins", sans-serif;
+font-family: "Raleway", sans-serif; */
 
 /*============================RESET CSS========================================*/
 html,
@@ -138,7 +139,7 @@ html {
 
 body {
   font-family: "Montserrat", sans-serif;
-  color: #515151;
+  color: #0c0c0f;
 }
 * {
   margin: 0;
@@ -164,24 +165,27 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Montserrat", sans-serif;
   font-weight: 300;
   text-transform: uppercase;
-  color: #313131;
+  color: #0c0c0f;
 }
 
 .title {
+  font-family: "Montserrat", sans-serif;
   font-size: 5.063em;
   font-weight: 700;
 }
 
 h1 {
+  font-family: "Montserrat", sans-serif;
   font-size: 3.75em;
   line-height: 1.25em;
+  text-transform: capitalize;
 }
 
 h2 {
-  font-size: 3.75em;
+  font-family: "Montserrat", sans-serif;
+  font-size: 2.25em;
   font-weight: 600;
   line-height: 1em;
   text-transform: capitalize;
@@ -193,7 +197,7 @@ h2 {
 
 h3 {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 3.75em;
+  font-size: 1.5em;
   font-weight: 600;
   line-height: 1em;
   text-transform: capitalize;
@@ -203,6 +207,7 @@ h3 {
 }
 
 h4 {
+  font-family: "Raleway", sans-serif;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 1em;
   text-transform: capitalize;
@@ -210,17 +215,14 @@ h4 {
 }
 
 h5 {
-  font-size: 667em;
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.667em;
   font-weight: 300;
   text-transform: capitalize;
 }
 
-h6 {
-  font-size: 444em;
-  font-weight: 600;
-}
-
 p {
+  font-family: "Raleway", sans-serif;
   font-size: 1em;
   line-height: 1.55em;
   margin: 30px 0 15px 0;
@@ -434,6 +436,80 @@ p {
   font-size: 7.95em;
   margin: 0 auto;
   text-align: left;
+}
+
+/* ===============================COLOUR===================== */
+
+.colour-container {
+  display: grid;
+  grid-template-columns: auto;
+  grid-gap: 20px;
+  padding: 10px;
+  text-align: center;
+}
+
+.colour-container > div {
+  padding: 20px 0;
+  margin-bottom: 20px;
+  background-color: #eaeaea;
+}
+
+.colour-tile {
+  height: 160px;
+}
+
+.hex {
+  display: block;
+  height: 50px;
+  margin-top: 180px;
+  background-color: #ffffff;
+  text-align: center;
+  line-height: 50px;
+}
+
+#diffwhite {
+  grid-column-start: 1;
+  grid-column-end: 5;
+  background-color: #e5e1e1;
+}
+
+#diffblack {
+  grid-column-start: 5;
+  grid-column-end: 9;
+  background-color: #0c0c0f;
+}
+
+#white {
+  grid-column-start: 9;
+  grid-column-end: 13;
+  background-color: #ffffff;
+}
+
+#bloodorange {
+  grid-column-start: 1;
+  grid-column-end: 5;
+  background-color: #f84c0b;
+  transform: translateY(50%);
+}
+
+#black2 {
+  grid-column-start: 5;
+  grid-column-end: 9;
+  background-color: #222222;
+  transform: translateY(50%);
+}
+
+#black3 {
+  grid-column-start: 9;
+  grid-column-end: 13;
+  background-color: #333333;
+  transform: translateY(50%);
+}
+
+/* =======================TYPOGRAPHY======================== */
+
+#typography {
+  transform: translateY(50%);
 }
 
 /*=======================RESPONSIVE CODE=====================================*/
