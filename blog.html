@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Academic Blog</title>
+    <link rel="stylesheet" type="text/css" href="blog.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <div class="header-main">
+          <div class="logo">
+            <a href="index.html">Coronal Mass Ejections</a>
+          </div>
+          <div class="open-nav-menu">
+            <span></span>
+          </div>
+          <div class="menu-overlay"></div>
+
+          <nav class="nav-menu">
+            <div class="close-nav-menu">
+              <img src="/images/close.svg" alt="close" />
+            </div>
+            <ul class="menu">
+              <li class="menu-item">
+                <a href="index.html">Home</a>
+              </li>
+              <li class="menu-item">
+                <a href="#">Overview</a>
+              </li>
+
+              <li class="menu-item menu-item-has-children">
+                <a href="#" data-toggle="sub-menu"
+                  >Academics <i class="plus"></i
+                ></a>
+                <ul class="sub-menu">
+                  <li class="menu-item">
+                    <a href="blog.html">Blog</a>
+                  </li>
+
+                  <li class="menu-item">
+                    <a href="wireframes.html">Wireframes</a>
+                  </li>
+                  <li class="menu-item">
+                    <a href="styleguide.html">Syle Guide</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="menu-item">
+                <a href="data.html">Data</a>
+              </li>
+            </ul>
+
+            <div class="nav-toggle" id="nav-toggle">
+              <i class="ri-menu-fill"></i>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <section class="main-page" id="main-page">
+      <div class="main-page-text container">
+        <h2 class="main-page-title">The Academic Blog</h2>
+        <span class="main-page-subtitle">
+          All things academic within this website.
+        </span>
+      </div>
+    </section>
+
+    <div class="post-filter container">
+      <span class="filter-item active-filter" data-filter="all">All</span>
+      <span class="filter-item" data-filter="academic">Academic</span>
+      <span class="filter-item" data-filter="design">Design</span>
+      <span class="filter-item" data-filter="other">Other</span>
+    </div>
+
+    <!-- First Post -->
+    <section class="post container">
+      <div class="post-box academic">
+        <img
+          src="/images/Data Design Part 2.png"
+          alt="Picture of abstract graph"
+          class="post-img"
+        />
+        <h2 class="category">Academic</h2>
+        <a href="close.html" class="post-title">Data Visualization </a>
+        <span class="post-date">31 July 2023</span>
+        <p class="post-description">
+          A critical reflection on the article, 'Overview of Data Visualization'
+          by Li Q from the book Embodying Data.
+        </p>
+        <div class="profile">
+          <img
+            src="/images/Headshot.jpg"
+            alt="Image of Zamahayise Hlatshwayo"
+            class="profile-img"
+          />
+          <span class="profile-name">Zamahayise Hlatshwayo</span>
+        </div>
+      </div>
+
+      <!-- Post 2 -->
+
+      <div class="post-box design">
+        <img
+          src="/images/What is User Experience_.jpg"
+          alt="Picture of abstract graph"
+          class="post-img"
+        />
+        <h2 class="category">Design</h2>
+        <a href="critref.html" class="post-title"
+          >Critical Reflection on proposed UI and UX
+        </a>
+        <span class="post-date">To be posted</span>
+        <p class="post-description">
+          A critical reflection of my proposed UI and UX for this website.
+        </p>
+        <div class="profile">
+          <img
+            src="/images/Headshot.jpg"
+            alt="Image of Zamahayise Hlatshwayo"
+            class="profile-img"
+          />
+          <span class="profile-name">Zamahayise Hlatshwayo</span>
+        </div>
+      </div>
+      <!-- Post 3 -->
+
+      <div class="post-box other">
+        <img
+          src="/images/Coming Soon.jpeg"
+          alt="Picture of the words 'Coming Soon'"
+          class="post-img"
+        />
+        <h2 class="category">Other</h2>
+        <a href="critref.html" class="post-title"
+          >Critical Reflection on proposed UI and UX
+        </a>
+        <span class="post-date">To be posted</span>
+        <p class="post-description">
+          A critical reflection of my proposed UI and UX for this website.
+        </p>
+        <div class="profile">
+          <img
+            src="/images/Headshot.jpg"
+            alt="Image of Zamahayise Hlatshwayo"
+            class="profile-img"
+          />
+          <span class="profile-name">Zamahayise Hlatshwayo</span>
+        </div>
+      </div>
+    </section>
+
+    <script src="script.js"></script>
+    <script src="main.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.7.0.js"
+      integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

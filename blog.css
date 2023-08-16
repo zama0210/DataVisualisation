@@ -1,9 +1,22 @@
+/*=====================VARIABLES==========================*/
+:root {
+  --container-color: #1a1e21;
+  --second-color: #fd8f44;
+  --text-color: #172317;
+  --bg-color: #fff;
+}
+
+::selection {
+  color: var(--bg-color);
+  background: var(--second-color);
+}
+
 /*===========FONTS=========*/
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&family=Poppins&display=swap");
 
-body {
+/* body {
   line-height: 1.5;
   font-family: "Raleway", sans-serif;
   font-weight: 400;
@@ -11,10 +24,14 @@ body {
 }
 body.hidden-scrolling {
   overflow-y: hidden;
-}
+} */
 * {
+  font-family: "Poppins", sans-serif;
+  padding: 0;
   margin: 0;
   box-sizing: border-box;
+  scroll-behavior: smooth;
+  scroll-padding-top: 2rem;
 }
 .container {
   max-width: 1170px;
@@ -28,6 +45,13 @@ ul {
 a {
   text-decoration: none;
 }
+img {
+  width: 100%;
+}
+section {
+  padding: 3rem 0 2rem;
+}
+
 /*================================HEADER==================================*/
 .header {
   position: fixed;
@@ -271,139 +295,180 @@ a {
   }
 }
 
-/* =====================HOME======================= */
-
-.home {
-  position: relative;
-  height: 100vh;
+/*==========================BLOG CONTENT============================*/
+.main-page {
+  width: 100%;
+  min-height: 440px;
+  background: var(--container-color);
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+.main-page-text {
+  color: var(--bg-color);
+  text-align: center;
 }
 
-.home-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
+.main-page-title {
+  font-size: 3.5rem;
+}
+
+.main-page-subtitle {
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+/* ======================================POST FILTER================================= */
+
+.post-filter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 1.5rem;
+  margin-top: 2rem !important;
+}
+
+.filter-item {
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.active-filter {
+  background: var(--second-color);
+  color: var(--bg-color);
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+
+/* =============================POSTS=================== */
+.post {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minimax(280px, auto));
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.post-box {
+  background: var(--bg-color);
+  box-shadow: 0 4px 14px hsl(355deg 25% 15% / 10%);
+  padding: 15px;
+
+  border-radius: 0.5rem;
+}
+
+.post-img {
   width: 100%;
-  height: 750px;
+  height: 200px;
   object-fit: cover;
   object-position: center;
-
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: relative;
-  background-image: linear-gradient(
-      0deg,
-      rgba(0, 0, 0, 0.5),
-      rgba(0, 0, 0, 0.5)
-    ),
-    url(/images/image-2000x1080.jpg);
+  border-radius: 0.5rem;
 }
 
-.home-container {
-  position: relative;
-  padding-top: 3rem;
-  row-gap: 3rem;
+.category {
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: var(--second-color);
 }
-
-.home-data {
-  text-align: left;
-}
-
-.home-sub {
-  font-size: 1.25rem;
-  margin-bottom: 0.5rem;
-}
-
-.home-title {
-  font-size: 4rem;
-  margin-bottom: 1rem;
-  color: #ffffff;
-  transform: translate(0%, 230%);
-}
-
-.home-description {
-  margin-bottom: 2rem;
-  color: #ffffff;
-  transform: translate(0%, 400%);
-}
-
-/*============BUTTON===================*/
-
-.button {
-  background-color: #e91e63;
-  padding: 0.25rem 0.5rem;
-  color: #000000;
-  display: inline-flex;
-  align-items: center;
-  column-gap: 2rem;
-  font-family: "Montserrat", sans-serif;
+.post-title {
+  font-size: 1.3rem;
   font-weight: 600;
-  backdrop-filter: blur (24px);
-  -webkit-backdrop-filter: blur (24px); /* For safari */
-  transform: translate(0%, 520%);
+  color: var(--text-color);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
-.button i {
-  font-size: 1.25rem;
-  transition: transform 4s;
-  font-weight: initial;
+.post-date {
+  display: flex;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  font-weight: 400;
+  margin-top: 4px;
 }
 
-.button:hover i {
-  transform: translateX.25rem;
+.post-description {
+  font-size: 1rem;
+  line-height: 1.5rem;
+  margin: 5px 0 10px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
-/*========OVERVIEW SECTION=========*/
-.overview-section {
-  position: relative;
-  height: 100vh;
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.text {
-  margin-bottom: 2rem;
-  color: #ffffff;
-  transform: translate(0%, 300%);
-  text-align: justify;
-  font-size: 16px;
-  max-width: 600px;
-  padding-left: 100px;
+.profile-img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+  border: 2px solid var(--second-color);
 }
 
-.para1 {
-  word-wrap: break-word;
+.profile-name {
+  font-size: 0.82rem;
+  font-weight: 500;
 }
 
-.text2 {
-  margin-bottom: 2rem;
-  color: #ffffff;
-  transform: translate(0%, 300%);
-  text-align: justify;
-  font-size: 16px;
-  max-width: 600px;
-  padding-left: 100px;
+/* =====================BLOG POSTS====================== */
+.post-header {
+  width: 100%;
+  height: 500px;
+  background: var(--container-color);
 }
 
-.para2 {
-  word-wrap: break-word;
+.post-container {
+  max-width: 800px;
+  margin: auto;
+  width: 100%;
 }
 
-.text3 {
-  margin-bottom: 2rem;
-  color: #ffffff;
-  transform: translate(0%, 100%);
-  text-align: justify;
-  font-size: 16px;
-  max-width: 600px;
-  padding-left: 75px;
+.poheader-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 4rem !important;
 }
 
-.para3 {
-  word-wrap: break-word;
+.back-blog {
+  color: var(--second-color);
+  font-size: 0.9rem;
 }
 
-.picture1 {
-  float: center;
-  position: relative;
-  transform: translate(-100%, -50%);
-  opacity: 1;
+.poheader-title {
+  width: 90%;
+  font-size: 2.6rem;
+  color: var(--bg-color);
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.poheader-img {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.post-content {
+  margin-top: 10rem !important;
+}
+
+.sub-heading {
+  font-size: 1.2rem;
+}
+
+.post-text {
+  font-size: 1rem;
+  line-height: 1.7rem;
+  margin: 1rem 0;
 }
