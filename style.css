@@ -289,24 +289,17 @@ a {
   text-align: left;
 }
 
-.home-sub {
-  font-size: 1.25rem;
-  margin-bottom: 0.5rem;
-  transform: translate(0%, 800%);
-  color: #0c0c0f;
-}
-
 .home-title {
   font-size: 6rem;
   margin-bottom: 1rem;
   color: #0c0c0f;
-  transform: translate(0%, 150%);
+  transform: translate(0%, 200%);
 }
 
 .home-description {
   margin-bottom: 2rem;
   color: #0c0c0f;
-  transform: translate(0%, 400%);
+  transform: translate(0%, 500%);
 }
 
 /*============BUTTON===================*/
@@ -322,7 +315,7 @@ a {
   font-weight: 600;
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px); /* For safari */
-  transform: translate(0, 520%); /* Corrected the translate function */
+  transform: translate(0, 50%); /* Corrected the translate function */
 }
 
 .button i {

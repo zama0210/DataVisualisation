@@ -496,6 +496,7 @@ p {
 #hero {
   width: 80%;
   height: 100vh;
+  transform: translate(0%, 25%);
   text-align: center;
   color: #f5f5fa;
   margin: auto;

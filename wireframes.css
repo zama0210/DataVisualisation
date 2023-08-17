@@ -274,13 +274,13 @@ a {
 }
 
 /* =========================GALLERY======================== */
-.container {
+.box {
   position: relative;
   min-height: 100vh;
   background: #f5f5fa;
 }
 
-.container h2 {
+.box h2 {
   font-size: 40px;
   font-family: "Montserrat", sans-serif;
   font-weight: normal;
@@ -289,7 +289,7 @@ a {
   text-align: center;
   text-transform: capitalize;
 }
-.container.image-container {
+.box.image-container {
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
@@ -297,7 +297,7 @@ a {
   padding: 10px;
 }
 
-.container.image-container .image {
+.box.image-container .image {
   height: 250px;
   width: 350px;
   border: 10px solid #ffffff;
@@ -305,18 +305,18 @@ a {
   cursor: pointer;
 }
 
-.container.image-container .image img {
+.box.image-container .image img {
   height: 100%;
   width: 100%;
   object-fit: cover;
   transition: 0.2s linear;
 }
 
-.container.image-container .image:hover img {
+.box.image-container .image:hover img {
   transform: scale(1.1);
 }
 
-.container .popup-image {
+.box .popup-image {
   position: fixed;
   top: 0;
   left: 0;
@@ -327,7 +327,7 @@ a {
   display: none;
 }
 
-.container .popup-image span {
+.box .popup-image span {
   position: absolute;
   top: 0;
   right: 10px;
@@ -338,7 +338,7 @@ a {
   z-index: 100;
 }
 
-.container .popup-image img {
+.box .popup-image img {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -349,7 +349,7 @@ a {
 }
 
 @media (max-width: 768px) {
-  .container .popup-imageimg {
+  .box .popup-imageimg {
     width: 95%;
   }
 }
