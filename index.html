@@ -12,7 +12,7 @@
       <div class="container">
         <div class="header-main">
           <div class="logo">
-            <a href="index.html">Coronal Mass Ejections</a>
+            <a href="index.html">2429549</a>
           </div>
           <div class="open-nav-menu">
             <span></span>
@@ -23,34 +23,31 @@
             <div class="close-nav-menu">
               <img src="/images/close.svg" alt="close" />
             </div>
-
             <ul class="menu">
               <li class="menu-item">
                 <a href="index.html">Home</a>
               </li>
               <li class="menu-item">
-                <a href="#">Overview</a>
+                <a href="index.html#overview">Overview</a>
               </li>
 
               <li class="menu-item menu-item-has-children">
                 <a href="#" data-toggle="sub-menu"
                   >Academics <i class="plus"></i
                 ></a>
-                <ul class="sub-menu"></ul>
-              </li>
+                <ul class="sub-menu">
+                  <li class="menu-item">
+                    <a href="blog.html">Blog</a>
+                  </li>
 
-              <li class="menu-item">
-                <a href="blog.html">Blog</a>
+                  <li class="menu-item">
+                    <a href="wireframes.html">Wireframes</a>
+                  </li>
+                  <li class="menu-item">
+                    <a href="styleguide.html">Syle Guide</a>
+                  </li>
+                </ul>
               </li>
-
-              <li class="menu-item">
-                <a href="wireframes.html">Wireframes</a>
-              </li>
-
-              <li class="menu-item">
-                <a href="styleguide.html">Syle Guide</a>
-              </li>
-
               <li class="menu-item">
                 <a href="data.html">Data</a>
               </li>
@@ -69,7 +66,7 @@
       <section class="home-hero" id="home">
         <div class="home-container container grid">
           <div class="home-data">
-            <h2 class="home-sub">Visualising Coronal Mass Ejection</h2>
+            <h2 class="home-sub">Data visualization with</h2>
             <h1 class="home-title">Coronal Mass Ejection</h1>
             <p class="home-description">
               Using the DONKI (Database of Notifications, Knowledge,
@@ -77,31 +74,29 @@
               from the Coronal Mass Ejection (CME) Analysis will be visualised.
             </p>
 
-            <a href="data.html" class="button">
-              See More <i class="ri-arrow-right-line"></i>
-            </a>
+            <a href="data.html" class="button"
+              >See More <i class="fa fa-arrow-right"></i
+            ></a>
           </div>
         </div>
       </section>
 
       <section class="overview-section" id="overview">
-        <div class="text">
-          <p class="para1">
+        <div class="text-container">
+          <h3 class="overview-title">What are Coronal Mass Ejections?</h3>
+          <div class="thumbanail right">
+            <img src="images/CMEs.png" alt="picture of solar storm" />
+          </div>
+
+          <p>
             Coronal Mass Ejections (CMEs) are large expulsions of plasma and
             magnetic field from the Sun’s corona. They can eject billions of
             tons of coronal material and carry an embedded magnetic field that
             is stronger than the background solar wind interplanetary magnetic
             field strength.
           </p>
-        </div>
 
-        <!-- <div class="picture1">
-  <img src="/images/How Solar Flares Work and the Risks They Pose.jpeg" alt="picture of solar storm"/>
-</div>
-</div> -->
-
-        <div class="text2">
-          <p class="para2">
+          <p>
             CMEs travel outward from the Sun at speeds ranging from slower than
             250 kilometers per second (km/s) to as fast as near 3000 km/s. The
             more explosive CMEs generally begin when highly twisted magnetic
@@ -112,15 +107,17 @@
             typically accompanies the explosive acceleration of plasma away from
             the Sun – the CME.
           </p>
-        </div>
 
-        <!-- <img
-          src="/images/Disaster Prep_ Coronal Mass Ejections - Evergreen Off-Grid.jpeg"
-          alt="Illustration of CMEs"
-        /> -->
+          <div class="divide"></div>
 
-        <div class="text3">
-          <p class="para3">
+          <div class="thumbanail left">
+            <img
+              src="/images/Disaster Prep_ Coronal Mass Ejections - Evergreen Off-Grid.jpeg"
+              alt=""
+            />
+          </div>
+
+          <p>
             CMEs can also occur from locations where relatively cool and denser
             plasma is trapped and suspended by magnetic flux extending up to the
             inner corona - filaments and prominences. CMEs travelling faster
@@ -128,10 +125,24 @@
             These shock waves can accelerate charged particles ahead of them –
             causing increased radiation storm potential or intensity.
           </p>
+
+          <p>
+            Important CME parameters used in analysis are size, speed, and
+            direction. These properties are inferred from orbital satellites’
+            coronagraph imagery by SWPC forecasters to determine any
+            Earth-impact likelihood. Imminent CME arrival is first observed by
+            the Deep Space Climate Observatory (DSCOVR) satellite, located at
+            the L1 orbital area. Sudden increases in density, total
+            interplanetary magnetic field strength, and solar wind speed at the
+            DSCOVR spacecraft indicate arrival of the CME-associated
+            interplanetary shock ahead of the magnetic cloud. This can often
+            provide 15 to 60 minutes advanced warning of shock arrival at Earth
+            – and any possible sudden impulse or sudden storm commencement; as
+            registered by Earth-based magnetometers.
+          </p>
         </div>
       </section>
     </main>
-    <footer class="footer"></footer>
 
     <script src="script.js"></script>
   </body>
