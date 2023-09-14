@@ -4,10 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Critical Reflection</title>
-    <link rel="stylesheet" type="text/css" href="styleguide.css" />
+    <link rel="stylesheet" type="text/css" href="blog.css" />
+    <link
+      rel="stylesheet"
+      href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"
+    />
   </head>
   <body>
-    <header class="header">
+     <header class="header">
       <div class="container">
         <div class="header-main">
           <div class="logo">
@@ -47,10 +51,22 @@
                   </li>
                 </ul>
               </li>
-              <li class="menu-item">
-                <a href="data.html">Data</a>
+              <li class="menu-item menu-item-has-children">
+                <a href="#" data-toggle="sub-menu"
+                  >Data <i class="plus"></i
+                ></a>
+                <ul class="sub-menu">
+                  <li class="menu-item">
+                    <a href="data.html">Speed vs. Time</a>
+                  </li>
+
+                  <li class="menu-item">
+                    <a href="data2.html">Speed vs. Half Angle</a>
+                  </li>
+                  
+        
+                </ul>
               </li>
-            </ul>
 
             <div class="nav-toggle" id="nav-toggle">
               <i class="ri-menu-fill"></i>
@@ -59,11 +75,174 @@
         </div>
       </div>
     </header>
-    <div id="hero-wrapper">
-      <section id="hero" class="text-focus-in">
-        <h2>Placeholder for the<br />next blog post</h2>
-      </section>
-    </div>
+    
+    <section class="post-header">
+      <div class="poheader-content post-container">
+        <a href="blog.html" class="back-blog">Back To Other Posts</a>
+        <h2 class="poheader-title">Data Visualization</h2>
+        <img
+          src="/images/What is User Experience_.jpg"
+          alt="Picture of a diagram about user experience"
+          class="poheader-img"
+        />
+      </div>
+    </section>
+
+    <section class="post-content post-container">
+      <div class="leftcolumn1">
+        <h2 class="sub-heading">
+          A Critical Reflection of my proposed UI and UX
+        </h2>
+        <p class="post-text">
+          In this blog post I will be taking the opportunity to critically
+          reflect on the UI and UX design of my website using resources to
+          justify the decisions that I made in the construction of the website.
+        </p>
+        <p class="post-text">
+          Before implementing any UI and UX principles I decided to search for
+          examples of data visualization website so that I could take note of
+          what was common amongst these websites. I had to consider that my
+          website would have additional webpages and that it would have a
+          greater focus on my academics. I started with a basic idea of what
+          would be included in my navigation bar before starting with a few
+          low-fidelity wireframes on a piece of paper.
+        </p>
+        <p class="post-text">
+          At this point, I was focused on the interface because I wanted to give
+          myself an opportunity to do a thorough UX analysis.
+        </p>
+        <p class="post-text">
+          Initially, I wanted the hero section to have a background image and
+          the main colour for this image would be white so that when the user
+          scrolls there’s no real change in the background, the change would
+          happen with the body, with the text. Through trial and error, I
+          decided that it would be better if I left the image out of the hero
+          section. I chose to do the DONKI API for this assignment with the
+          focus being on Coronal Mass Ejections (CMEs) so I wanted the Hero
+          section to give a glimpse of what the data presented will be about.
+          All images I could find of the related topic made the hero section
+          jarring to open and it minimised the aesthetic I was trying to build.
+          The images were screaming at you and the information in that section
+          became hard to read.
+        </p>
+        <p class="post-text">
+          My overview section was intended to provide the user a SparkNotes
+          version of what CMEs are and how they are measured so when the user
+          navigates to the visualisation page, they would have a basic
+          understanding what they will be looking at. An overview section was
+          what was missing from the example website I chose to look at. At
+          various points, I would click the link to the website, and I would sit
+          in confusion to what I was looking at and how this data had been
+          collected.
+        </p>
+
+        <p class="post-text">
+          I wanted the provided information to be in an asymmetrical balance
+          with an accompanying picture and I intended for a large separation
+          between paragraphs so that it would be easier to digest. This section
+          of the homepage is where I believe I failed at maintaining a clean and
+          simple design. The end product was cluttered.
+        </p>
+        <p class="post-text">
+          The blog needed to look different to the rest of the website because I
+          wanted there to be a separation between it and the rest of the site.
+          Blogs are websites so incorporating it as a webpage instead of its own
+          website, took away the simplicity I was looking for. I considered
+          reusing the structure from the previous submission, but I decided
+          against it and used “A crash course on User Experience + Interface
+          Design” pdf to jog my memory and I kept Fitt’s law at the forefront of
+          my mind when I was designing how the cards would look. I decided
+          against have a “Read More” button on the card as it created clutter in
+          the previous submission, and I wanted to avoid it. I wanted to make
+          sure that the actual posts were legible. I wanted to have an edged
+          alignment for the posts, but I did not want the text to create a busy
+          aesthetic. I also settled on having the references next to the post as
+          opposed to the end of the post, but I realise now that it makes the
+          post harder to reader and it takes away from my initial intentions.
+        </p>
+        <p class="post-text">
+          In my style guide, I ensured to put the colour scheme and the chosen
+          typography for the hierarchical headings as well as the paragraphs. I
+          opted out of implementing a grid system (though I understood that it
+          would maintain a consistent layout) because the content on each
+          webpage would be vastly different. I tried my best to ensure
+          consistency with the above-mentioned categories instead of a layout
+          because I did not think it would fit well, considering the
+          requirements for the website. My previous assignment submission was
+          used as a point of reflection and as a way to see how I could
+          strengthen the weaknesses I had at that time.
+        </p>
+        <p class="post-text">
+          Moving forward, I plan on improving the interface of the blog,
+          ensuring that all my images display even after I have submitted the
+          assignment and that I make some tweaks with the responsive interface
+          because I viewed my website on my phone, and I have grown to dislike
+          how the interface looks there in comparison to on my laptop.
+        </p>
+        <p class="post-text">
+          Reflecting on the design decisions I have made has been an
+          enlightening process. I have used the provided UX and UI guide as the
+          main assistants in the construction of this website and I will
+          continue to refer to these guides to ensure I do not reflect again and
+          find myself with the same grievances as I have had before. I am
+          confident that the end-product will be exceptional.
+        </p>
+      </div>
+    </section>
+    <footer class="footer-distributed">
+      <div class="footer-left">
+        <h3>Zamahayise<span>Hlatshwayo</span></h3>
+
+        <p class="footer-links">
+          <a href="index.html">Home</a>
+          |
+          <a href="index.html#overview">Overview</a>
+          |
+          <a href="wireframes.html">Wireframes</a>
+          |
+          <a href="blog.html">Blog</a>
+          |
+          <a href="styleguide.html">Styleguide</a>
+          |
+          <a href="data.html">Speed vs. Time</a>
+          |
+          <a href="data2.html">CME count</a>
+        </p>
+
+        <p class="footer-company-name">
+          Copyright © 2023 <strong>2429549</strong> All rights reserved
+        </p>
+      </div>
+
+      <div class="footer-center">
+        <div>
+          <i class="fa fa-map-marker"></i>
+          <p><span> Braamfontein</span> Johannesburg</p>
+        </div>
+        <div>
+          <i class="fa fa-envelope"></i>
+          <p>
+            <a href="mailto:2429549@students.wits.ac.za"
+              >2429549@students.wits.ac.za</a
+            >
+          </p>
+        </div>
+      </div>
+      <div class="footer-right">
+        <p class="footer-company-about">
+          <span>About the website</span>
+          The <strong>Coronal Mass Ejection Analysis API</strong> is a NASA API
+          under the DONKI API. This website aims to provide more information of
+          Coronal Mass Ejections as well as use the API to visualise data.
+        </p>
+        <div class="footer-icons">
+          <a href="https://github.com/zama0210"><i class="fa fa-github"></i></a>
+          <a href="https://instagram.com/zmhs.02?igshid=OGQ5ZDc2ODk2ZA=="><i class="fa fa-instagram"></i></a>
+          <a href="https://www.linkedin.com/in/zamahayise-hlatshwayo-4b7ba923a"><i class="fa fa-linkedin"></i></a>
+          
+        </div>
+      </div>
+    </footer>
 
     <script src="script.js"></script>
   </body>

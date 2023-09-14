@@ -3,15 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Third Blog</title>
-    <link rel="stylesheet" type="text/css" href="blog.css" />
+    <title>CMEs Scatter Plot</title>
+    <link rel="stylesheet" type="text/css" href="styleguide.css" />
+    <script src="https://unpkg.com/d3@7.8.3/dist/d3.min.js"></script>
     <link
       rel="stylesheet"
       href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"
     />
   </head>
   <body>
-    <header class="header">
+     <header class="header">
       <div class="container">
         <div class="header-main">
           <div class="logo">
@@ -75,23 +76,12 @@
         </div>
       </div>
     </header>
-    <section class="post-header">
-      <div class="poheader-content post-container">
-        <a href="blog.html" class="back-blog">Back To Other Posts</a>
-        <h2 class="poheader-title">Data Visualization</h2>
-        <img
-          src="/images/Coming Soon.jpeg"
-          alt="Picture of the words coming Soon"
-          class="poheader-img"
-        />
-      </div>
-    </section>
+    <main>
+      <section id="scatter-plot">
+        <svg width="960" height="500"></svg>
+      </section>
+    </main>
 
-    <section class="post-content post-container">
-      <div class="leftcolumn1">
-        <h2>Placeholder for the next blog post</h2>
-      </div>
-    </section>
     <footer class="footer-distributed">
       <div class="footer-left">
         <h3>Zamahayise<span>Hlatshwayo</span></h3>
@@ -140,13 +130,17 @@
         </p>
         <div class="footer-icons">
           <a href="https://github.com/zama0210"><i class="fa fa-github"></i></a>
-          <a href="https://instagram.com/zmhs.02?igshid=OGQ5ZDc2ODk2ZA=="><i class="fa fa-instagram"></i></a>
-          <a href="https://www.linkedin.com/in/zamahayise-hlatshwayo-4b7ba923a"><i class="fa fa-linkedin"></i></a>
-          
+          <a href="https://instagram.com/zmhs.02?igshid=OGQ5ZDc2ODk2ZA=="
+            ><i class="fa fa-instagram"></i
+          ></a>
+          <a href="https://www.linkedin.com/in/zamahayise-hlatshwayo-4b7ba923a"
+            ><i class="fa fa-linkedin"></i
+          ></a>
         </div>
       </div>
     </footer>
 
+    <script src="data2.js"></script>
     <script src="script.js"></script>
   </body>
 </html>
