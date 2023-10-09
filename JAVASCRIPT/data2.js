@@ -7,8 +7,9 @@
   const height = +svg.attr("height");
 
   const render = (data) => {
-    const title = "CME Analysis: Speed vs. Half Angle";
+    const title = "CMEs: Speed vs. Half Angle";
 
+    // Update these data access functions based on your API response structure
     const xValue = (d) => d.speed;
     const xAxisLabel = "Speed (km/s)";
 
@@ -79,11 +80,25 @@
     g.append("text").attr("class", "title").attr("y", -10).text(title);
   };
 
-  const apiKey = "jyTZXTI1WOE2DJP4ZJM0NbXtV2Elj1YiTBnPvWA2";
+  const apiKey = "YwqTVOnuzH1enLJjupphAGv4E8yLgSIKewfsh9hI";
   const apiUrl = `https://api.nasa.gov/DONKI/CMEAnalysis?startDate=2016-09-01&endDate=2016-09-30&mostAccurateOnly=true&speed=500&halfAngle=30&catalog=ALL&api_key=${apiKey}`;
 
-  d3.json(apiUrl).then((data) => {
-    // Assuming the API returns an array of objects with 'speed' and 'halfAngle' properties
-    render(data);
-  });
+  fetch(apiUrl)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`Network response was not ok: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      if (Array.isArray(data)) {
+        // Assuming the API response structure matches your provided structure
+        render(data);
+      } else {
+        console.error("Data format from the API is not as expected.");
+      }
+    })
+    .catch((error) => {
+      console.error("Error fetching data:", error);
+    });
 })(d3);

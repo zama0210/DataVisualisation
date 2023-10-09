@@ -10,10 +10,10 @@
     const title = "NASA CME Analysis";
 
     // Replace these data access functions with the appropriate ones for NASA API data
-    const xValue = (d) => new Date(d.time); // Assuming the NASA API provides a 'time' field
+    const xValue = (d) => d.time;
     const xAxisLabel = "Time";
 
-    const yValue = (d) => d.speed; // Assuming the NASA API provides a 'speed' field
+    const yValue = (d) => d.speed;
     const yAxisLabel = "Speed (km/s)";
 
     const margin = { top: 60, right: 40, bottom: 88, left: 105 };
@@ -80,19 +80,23 @@
   };
 
   // Fetch data from NASA API
-  const apiUrl =
-    "https://api.nasa.gov/DONKI/CMEAnalysis?startDate=2016-09-01&endDate=2016-09-30&mostAccurateOnly=true&speed=500&halfAngle=30&catalog=ALL&api_key=DEMO_KEY";
+  const apiKey = "YwqTVOnuzH1enLJjupphAGv4E8yLgSIKewfsh9hI";
+  const apiUrl = `https://api.nasa.gov/DONKI/CMEAnalysis?startDate=2016-09-01&endDate=2016-09-30&mostAccurateOnly=true&speed=500&halfAngle=30&catalog=ALL&api_key=${apiKey}`;
 
   fetch(apiUrl)
-    .then((response) => response.json())
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`Network response was not ok: ${response.status}`);
+      }
+      return response.json();
+    })
     .then((data) => {
-      // Assuming the relevant data is stored in the 'cmeData' property of the response
-      const nasaData = data.cmeData.map((entry) => ({
-        time: new Date(entry.time), // Parse the timestamp
-        speed: entry.speed, // Access the speed data
-      }));
-
-      render(nasaData);
+      if (Array.isArray(data)) {
+        // Assuming the API response structure matches your provided structure
+        render(data);
+      } else {
+        console.error("Data format from the API is not as expected.");
+      }
     })
     .catch((error) => {
       console.error("Error fetching data:", error);
