@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CMEs Line Graph</title>
-    <link rel="stylesheet" type="text/css" href="/CSS/styleguide.css" />
-    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <title>CMEs Scatter Plot</title>
+    <link rel="stylesheet" type="text/css" href="styleguide.css" />
+   <script src="https://d3js.org/d3.v7.min.js"></script>
 
     <link
       rel="stylesheet"
@@ -13,7 +13,7 @@
     />
   </head>
   <body>
-  <header class="header">
+    <header class="header">
       <div class="container">
         <div class="header-main">
           <div class="logo">
@@ -42,14 +42,14 @@
                 ></a>
                 <ul class="sub-menu">
                   <li class="menu-item">
-                    <a href="/HTML/blog.html">Blog</a>
+                    <a href="blog.html">Blog</a>
                   </li>
 
                   <li class="menu-item">
-                    <a href="/HTML/wireframes.html">Wireframes</a>
+                    <a href="wireframes.html">Wireframes</a>
                   </li>
                   <li class="menu-item">
-                    <a href="/HTML/styleguide.html">Syle Guide</a>
+                    <a href="styleguide.html">Syle Guide</a>
                   </li>
                 </ul>
               </li>
@@ -59,16 +59,16 @@
                 ></a>
                 <ul class="sub-menu">
                   <li class="menu-item">
-                    <a href="/HTML/data.html">Speed vs. Time</a>
+                    <a href="data.html">Speed vs. Time</a>
                   </li>
 
                   <li class="menu-item">
-                    <a href="/HTML/data2.html">Speed vs. Half Angle</a>
+                    <a href="data2.html">Speed vs. Half Angle</a>
                   </li>
 
                   
                   <li class="menu-item">
-                    <a href="/HTML/interactive.html">Choropleth Map</a>
+                    <a href="interactive.html">Choropleth Map</a>
                   </li>
                   
         
@@ -82,17 +82,17 @@
         </div>
       </div>
     </header>
-<main>
-      <section id="line-graph">
+    <main>
+      <section id="scatter-plot">
         <svg width="800" height="400"></svg>
-
       </section>
     </main>
-      <footer class="footer-distributed">
-        <div class="footer-left">
-          <h3>Zamahayise<span>Hlatshwayo</span></h3>
 
-          <p class="footer-links">
+    <footer class="footer-distributed">
+      <div class="footer-left">
+        <h3>Zamahayise<span>Hlatshwayo</span></h3>
+
+       <p class="footer-links">
           <a href="index.html">Home</a>
           |
           <a href="index.html#overview">Overview</a>
@@ -108,49 +108,45 @@
           <a href="/HTML/data2.html">CME count</a>
         </p>
 
-          <p class="footer-company-name">
-            Copyright © 2023 <strong>2429549</strong> All rights reserved
-          </p>
-        </div>
+        <p class="footer-company-name">
+          Copyright © 2023 <strong>2429549</strong> All rights reserved
+        </p>
+      </div>
 
-        <div class="footer-center">
-          <div>
-            <i class="fa fa-map-marker"></i>
-            <p><span> Braamfontein</span> Johannesburg</p>
-          </div>
-          <div>
-            <i class="fa fa-envelope"></i>
-            <p>
-              <a href="mailto:2429549@students.wits.ac.za"
-                >2429549@students.wits.ac.za</a
-              >
-            </p>
-          </div>
+      <div class="footer-center">
+        <div>
+          <i class="fa fa-map-marker"></i>
+          <p><span> Braamfontein</span> Johannesburg</p>
         </div>
-        <div class="footer-right">
-          <p class="footer-company-about">
-            <span>About the website</span>
-            The <strong>Coronal Mass Ejection Analysis API</strong> is a NASA
-            API under the DONKI API. This website aims to provide more
-            information of Coronal Mass Ejections as well as use the API to
-            visualise data.
+        <div>
+          <i class="fa fa-envelope"></i>
+          <p>
+            <a href="mailto:2429549@students.wits.ac.za"
+              >2429549@students.wits.ac.za</a
+            >
           </p>
-          <div class="footer-icons">
-            <a href="https://github.com/zama0210"
-              ><i class="fa fa-github"></i
-            ></a>
-            <a href="https://instagram.com/zmhs.02?igshid=OGQ5ZDc2ODk2ZA=="
-              ><i class="fa fa-instagram"></i
-            ></a>
-            <a
-              href="https://www.linkedin.com/in/zamahayise-hlatshwayo-4b7ba923a"
-              ><i class="fa fa-linkedin"></i
-            ></a>
-          </div>
         </div>
-      </footer>
-   
-    <script src="/JAVASCRIPT/api.js"></script>
+      </div>
+      <div class="footer-right">
+        <p class="footer-company-about">
+          <span>About the website</span>
+          The <strong>Coronal Mass Ejection Analysis API</strong> is a NASA API
+          under the DONKI API. This website aims to provide more information of
+          Coronal Mass Ejections as well as use the API to visualise data.
+        </p>
+        <div class="footer-icons">
+          <a href="https://github.com/zama0210"><i class="fa fa-github"></i></a>
+          <a href="https://instagram.com/zmhs.02?igshid=OGQ5ZDc2ODk2ZA=="
+            ><i class="fa fa-instagram"></i
+          ></a>
+          <a href="https://www.linkedin.com/in/zamahayise-hlatshwayo-4b7ba923a"
+            ><i class="fa fa-linkedin"></i
+          ></a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="/JAVASCRIPT/data2.js"></script>
     <script src="/JAVASCRIPT/script.js"></script>
   </body>
 </html>

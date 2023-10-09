@@ -3,15 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CMEs Scatter Plot</title>
-    <link rel="stylesheet" type="text/css" href="/CSS/styleguide.css" />
-   <script src="https://d3js.org/d3.v7.min.js"></script>
-
+    <title>Style Guide</title>
+    <link rel="stylesheet" type="text/css" href="styleguide.css" />
     <link
       rel="stylesheet"
       href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"
     />
   </head>
+
   <body>
      <header class="header">
       <div class="container">
@@ -42,14 +41,14 @@
                 ></a>
                 <ul class="sub-menu">
                   <li class="menu-item">
-                    <a href="/HTML/blog.html">Blog</a>
+                    <a href="blog.html">Blog</a>
                   </li>
 
                   <li class="menu-item">
-                    <a href="/HTML/wireframes.html">Wireframes</a>
+                    <a href="wireframes.html">Wireframes</a>
                   </li>
                   <li class="menu-item">
-                    <a href="/HTML/styleguide.html">Syle Guide</a>
+                    <a href="styleguide.html">Syle Guide</a>
                   </li>
                 </ul>
               </li>
@@ -59,16 +58,16 @@
                 ></a>
                 <ul class="sub-menu">
                   <li class="menu-item">
-                    <a href="/HTML/data.html">Speed vs. Time</a>
+                    <a href="data.html">Speed vs. Time</a>
                   </li>
 
                   <li class="menu-item">
-                    <a href="/HTML/data2.html">Speed vs. Half Angle</a>
+                    <a href="data2.html">Speed vs. Half Angle</a>
                   </li>
 
                   
                   <li class="menu-item">
-                    <a href="/HTML/interactive.html">Choropleth Map</a>
+                    <a href="interactive.html">Choropleth Map</a>
                   </li>
                   
         
@@ -83,29 +82,101 @@
       </div>
     </header>
     <main>
-      <section id="scatter-plot">
-        <svg width="800" height="400"></svg>
-      </section>
-    </main>
+      <div id="hero-wrapper">
+        <section id="hero" class="text-focus-in">
+          <h2>
+            Website Style Guide<br /><span> By Zamahayise Hlatshwayo </span>
+          </h2>
+        </section>
+      </div>
 
-    <footer class="footer-distributed">
+      <div class="divide"></div>
+
+      <div id="colour-wrapper">
+        <section id="colours">
+          <h2>The Colours</h2>
+          <p>Description of the colour palette chosen for this website.</p>
+
+          <div class="divide"></div>
+
+          <div class="colour-container">
+            <div class="colour-tile" id="diffwhite">
+              <div class="hex">#F5F5FA</div>
+            </div>
+
+            <div class="colour-tile" id="diffblack">
+              <div class="hex">#0C0C0F</div>
+            </div>
+
+            <div class="colour-tile" id="white">
+              <div class="hex">#FFFFFF</div>
+            </div>
+
+            <div class="colour-tile" id="bloodorange">
+              <div class="hex">#F84C0B</div>
+            </div>
+
+            <div class="colour-tile" id="black2">
+              <div class="hex">#222222</div>
+            </div>
+
+            <div class="colour-tile" id="black3">
+              <div class="hex">#333333</div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="divide"></div>
+
+      <div id="typography-wrapper">
+        <section id="typography">
+          <h2>Typography</h2>
+          <p>A depiction of the typography choices made for this website.</p>
+
+          <div class="divide"></div>
+
+          <div class="typography-container">
+            <h1>Heading 1</h1>
+            <div class="divide"></div>
+            <h2>Heading 2</h2>
+            <div class="divide"></div>
+
+            <h3>Heading 3</h3>
+            <div class="divide"></div>
+
+            <h4>Heading 4</h4>
+            <div class="divide"></div>
+
+            <h5>Heading 5</h5>
+            <div class="divide"></div>
+
+            <p>Paragraph</p>
+            <div class="divide"></div>
+          </div>
+        </section>
+      </div>
+    </main>
+ <footer class="footer-distributed">
       <div class="footer-left">
         <h3>Zamahayise<span>Hlatshwayo</span></h3>
 
-       <p class="footer-links">
+        <p class="footer-links">
           <a href="index.html">Home</a>
           |
           <a href="index.html#overview">Overview</a>
           |
-          <a href="/HTML/wireframes.html">Wireframes</a>
+          <a href="wireframes.html">Wireframes</a>
           |
-          <a href="/HTML/blog.html">Blog</a>
+          <a href="blog.html">Blog</a>
           |
-          <a href="/HTML/styleguide.html">Styleguide</a>
+          <a href="styleguide.html">Styleguide</a>
           |
-          <a href="/HTML/data.html">Speed vs. Time</a>
+          <a href="data.html">Speed vs. Time</a>
           |
-          <a href="/HTML/data2.html">CME count</a>
+          <a href="data2.html">Speed vs. Half Angle</a>
+          |
+          <a href="interactive.html">CME Occurence</a>
         </p>
 
         <p class="footer-company-name">
@@ -146,7 +217,6 @@
       </div>
     </footer>
 
-    <script src="/JAVASCRIPT/data2.js"></script>
-    <script src="/JAVASCRIPT/script.js"></script>
+<script src="script.js"></script>
   </body>
 </html>
