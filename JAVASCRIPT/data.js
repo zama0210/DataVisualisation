@@ -13,7 +13,7 @@
     .then((data) => {
       if (Array.isArray(data)) {
         // Assuming the API response structure matches your provided structure
-        render(processingData);
+        render(data);
       } else {
         console.error("Data format from the API is not as expected.");
       }
