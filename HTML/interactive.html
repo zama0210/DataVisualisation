@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <html>
+    <title>Choropleth Map</title>
+     <link rel="stylesheet" type="text/css" href="/CSS/styleguide.css" />
+      <link
+      rel="stylesheet"
+      href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"
+    />
+    <script src="https://unpkg.com/d3@5.6.0/dist/d3.min.js"></script>
+    <script src="https://unpkg.com/topojson@3.0.2/dist/topojson.min.js"></script>
+  </head>
+  <header class="header">
+      <div class="container">
+        <div class="header-main">
+          <div class="logo">
+            <a href="index.html">2429549</a>
+          </div>
+          <div class="open-nav-menu">
+            <span></span>
+          </div>
+          <div class="menu-overlay"></div>
+
+          <nav class="nav-menu">
+            <div class="close-nav-menu">
+              <img src="/images/close.svg" alt="close" />
+            </div>
+            <ul class="menu">
+              <li class="menu-item">
+                <a href="index.html">Home</a>
+              </li>
+              <li class="menu-item">
+                <a href="index.html#overview">Overview</a>
+              </li>
+
+              <li class="menu-item menu-item-has-children">
+                <a href="#" data-toggle="sub-menu"
+                  >Academics <i class="plus"></i
+                ></a>
+                <ul class="sub-menu">
+                  <li class="menu-item">
+                    <a href="/HTML/blog.html">Blog</a>
+                  </li>
+
+                  <li class="menu-item">
+                    <a href="/HTML/wireframes.html">Wireframes</a>
+                  </li>
+                  <li class="menu-item">
+                    <a href="/HTML/styleguide.html">Syle Guide</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="menu-item menu-item-has-children">
+                <a href="#" data-toggle="sub-menu"
+                  >Data <i class="plus"></i
+                ></a>
+                <ul class="sub-menu">
+                  <li class="menu-item">
+                    <a href="/HTML/data.html">Speed vs. Time</a>
+                  </li>
+
+                  <li class="menu-item">
+                    <a href="/HTML/data2.html">Speed vs. Half Angle</a>
+                  </li>
+                  
+        
+                </ul>
+              </li>
+
+            <div class="nav-toggle" id="nav-toggle">
+              <i class="ri-menu-fill"></i>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </header>
+  <body>
+    <section id="chloropleth">
+    <svg width="960" height="500"></svg>
+    </section>
+    <script src="/JAVASCRIPT/data.js"></script>
+  </body>
+    
+  </body>
+</html>
+

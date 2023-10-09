@@ -7,30 +7,30 @@
   const height = +svg.attr("height");
 
   const render = (data) => {
-    const title = "CME Analysis: Speed vs. Half Angle";
+    const title = "NASA CME Analysis";
 
-    const xValue = (d) => d.speed;
-    const xAxisLabel = "Speed (km/s)";
+    // Replace these data access functions with the appropriate ones for NASA API data
+    const xValue = (d) => d.time;
+    const xAxisLabel = "Time";
 
-    const yValue = (d) => d.halfAngle;
-    const circleRadius = 5;
-    const yAxisLabel = "Half Angle (°)";
+    const yValue = (d) => d.speed;
+    const yAxisLabel = "Speed (km/s)";
 
-    const margin = { top: 60, right: 40, bottom: 88, left: 150 };
+    const margin = { top: 60, right: 40, bottom: 88, left: 105 };
     const innerWidth = width - margin.left - margin.right;
     const innerHeight = height - margin.top - margin.bottom;
 
     const xScale = d3
-      .scaleLinear()
-      .domain([0, d3.max(data, xValue)])
-      .nice()
-      .range([0, innerWidth]);
+      .scaleTime()
+      .domain(d3.extent(data, xValue))
+      .range([0, innerWidth])
+      .nice();
 
     const yScale = d3
       .scaleLinear()
-      .domain([0, d3.max(data, yValue)])
-      .nice()
-      .range([innerHeight, 0]);
+      .domain(d3.extent(data, yValue))
+      .range([innerHeight, 0])
+      .nice();
 
     const g = svg
       .append("g")
@@ -46,7 +46,7 @@
     yAxisG
       .append("text")
       .attr("class", "axis-label")
-      .attr("y", -93)
+      .attr("y", -60)
       .attr("x", -innerHeight / 2)
       .attr("fill", "black")
       .attr("transform", `rotate(-90)`)
@@ -63,27 +63,42 @@
     xAxisG
       .append("text")
       .attr("class", "axis-label")
-      .attr("y", 75)
+      .attr("y", 80)
       .attr("x", innerWidth / 2)
       .attr("fill", "black")
       .text(xAxisLabel);
 
-    g.selectAll("circle")
-      .data(data)
-      .enter()
-      .append("circle")
-      .attr("cy", (d) => yScale(yValue(d)))
-      .attr("cx", (d) => xScale(xValue(d)))
-      .attr("r", circleRadius);
+    const lineGenerator = d3
+      .line()
+      .x((d) => xScale(xValue(d)))
+      .y((d) => yScale(yValue(d)))
+      .curve(d3.curveBasis);
+
+    g.append("path").attr("class", "line-path").attr("d", lineGenerator(data));
 
     g.append("text").attr("class", "title").attr("y", -10).text(title);
   };
 
-  const apiKey = "jyTZXTI1WOE2DJP4ZJM0NbXtV2Elj1YiTBnPvWA2";
+  // Fetch data from NASA API
+  const apiKey = "YwqTVOnuzH1enLJjupphAGv4E8yLgSIKewfsh9hI";
   const apiUrl = `https://api.nasa.gov/DONKI/CMEAnalysis?startDate=2016-09-01&endDate=2016-09-30&mostAccurateOnly=true&speed=500&halfAngle=30&catalog=ALL&api_key=${apiKey}`;
 
-  d3.json(apiUrl).then((data) => {
-    // Assuming the API returns an array of objects with 'speed' and 'halfAngle' properties
-    render(data);
-  });
+  fetch(apiUrl)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`Network response was not ok: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      if (Array.isArray(data)) {
+        // Assuming the API response structure matches your provided structure
+        render(data);
+      } else {
+        console.error("Data format from the API is not as expected.");
+      }
+    })
+    .catch((error) => {
+      console.error("Error fetching data:", error);
+    });
 })(d3);
