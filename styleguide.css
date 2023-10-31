@@ -749,34 +749,44 @@ text {
 }
 
 /* ========================================INTERACTIVE GRAPH===================== */
-#chloropleth {
-  transform: translate(20%, 30%);
-  height: 100vh;
+/* Add styles to the heatmap container */
+/* Style the map container */
+#map {
   width: 100%;
-}
-.sphere {
-  fill: #4242e4;
+  height: 400px; /* Adjust the height as needed */
 }
 
-.country {
-  stroke: black;
-  stroke-width: 0.05px;
+/* Style the heatmap container */
+#heatmap-container {
+  width: 100%;
+  height: 400px; /* Adjust the height as needed */
+  position: relative;
 }
 
-.country:hover {
-  fill: red;
+/* Style the heatmap SVG */
+#heatmap-container svg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
-.tick text {
-  font-size: 1em;
-  fill: black;
-  font-family: sans-serif;
+/* Define styles for the heatmap rectangles */
+rect {
+  fill-opacity: 0.7; /* Set the opacity of the rectangles */
+  stroke: #fff; /* Set the border color */
+  stroke-width: 1; /* Set the border width */
 }
 
-.tick circle {
-  stroke: black;
-  stroke-opacity: 0.5;
+.high-speed {
+  fill: #ff5733; /* Set color for high-speed CMEs */
 }
+
+.low-speed {
+  fill: #33ff57; /* Set color for low-speed CMEs */
+}
+
 /* ======================================FOOTER==========================================
 /* The footer is fixed to the bottom of the page */
 

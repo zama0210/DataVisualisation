@@ -1,180 +1,91 @@
-(function (topojson, d3) {
-  "use strict";
-  const apiKey = "YwqTVOnuzH1enLJjupphAGv4E8yLgSIKewfsh9hI";
-  const apiUrl = `https://api.nasa.gov/DONKI/CMEAnalysis?startDate=2016-09-01&endDate=2016-09-30&mostAccurateOnly=true&speed=500&halfAngle=30&catalog=ALL&api_key=${apiKey}`;
+// Define the dimensions and margins for the heatmap
+const margin = { top: 20, right: 20, bottom: 20, left: 20 };
+const width = 800 - margin.left - margin.right;
+const height = 400 - margin.top - margin.bottom;
 
-  fetch(apiUrl)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(`Network response was not ok: ${response.status}`);
-      }
-      return response.json();
-    })
-    .then((apiData) => {
-      if (Array.isArray(apiData)) {
-        render(apiData);
-      } else {
-        console.error("Data format from the API is not as expected.");
-      }
-    })
-    .catch((error) => {
-      console.error("Error fetching data:", error);
-    });
+// Append an SVG element to the heatmap container
+const svg = d3
+  .select("#heatmap-container")
+  .append("svg")
+  .attr("width", width + margin.left + margin.right)
+  .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+  .attr("transform", `translate(${margin.left},${margin.top})`);
 
-  const render = (apiData) => {
-    const colorScale = d3.scaleOrdinal();
+// Define the color scale for the heatmap
+const colorScale = d3.scaleSequential(d3.interpolateReds);
 
-    const colorValue = (d) => d.speed; // Use the "speed" property for coloring
+// Fetch data from the NASA API
+const apiKey = "Sa299kdvXScK6Wcy0lQlaVJnencvbsZoQeBqxSex";
+const apiUrl = `https://api.nasa.gov/DONKI/CMEAnalysis?startDate=2016-09-01&endDate=2016-09-30&mostAccurateOnly=true&speed=500&halfAngle=30&catalog=ALL&api_key=${apiKey}`;
 
-    colorScale
-      .domain(apiData.map(colorValue))
-      .domain(colorScale.domain().sort().reverse())
-      .range(d3.schemeSpectral[colorScale.domain().length]);
+d3.json(apiUrl).then((data) => {
+  // Process the data and extract latitudes and longitudes
+  const coordinates = data.map((d) => [d.latitude, d.longitude]);
 
-    const svg = d3.select("svg");
+  // Create a grid for the heatmap
+  const xScale = d3
+    .scaleLinear()
+    .domain([
+      d3.min(coordinates, (d) => d[1]),
+      d3.max(coordinates, (d) => d[1]),
+    ])
+    .range([0, width]);
 
-    const projection = d3.geoNaturalEarth1();
-    const pathGenerator = d3.geoPath().projection(projection);
+  const yScale = d3
+    .scaleLinear()
+    .domain([
+      d3.min(coordinates, (d) => d[0]),
+      d3.max(coordinates, (d) => d[0]),
+    ])
+    .range([height, 0]);
 
-    const g = svg.append("g");
+  // Create a tooltip element
+  const tooltip = d3
+    .select("body")
+    .append("div")
+    .style("position", "absolute")
+    .style("background", "rgba(0, 0, 0, 0.7)")
+    .style("color", "white")
+    .style("padding", "5px")
+    .style("border-radius", "3px")
+    .style("display", "none");
 
-    g.append("path")
-      .attr("class", "sphere")
-      .attr("d", pathGenerator({ type: "Sphere" }));
+  // Create a function to display the tooltip when hovering over a rectangle
+  function showTooltip(d) {
+    tooltip
+      .html(`Latitude: ${d[0]}<br>Longitude: ${d[1]}`)
+      .style("left", d3.event.pageX + 10 + "px")
+      .style("top", d3.event.pageY - 30 + "px")
+      .style("display", "block");
+  }
 
-    svg.call(
-      d3.zoom().on("zoom", () => {
-        g.attr("transform", d3.event.transform);
-      })
-    );
+  // Create a function to hide the tooltip when not hovering over a rectangle
+  function hideTooltip() {
+    tooltip.style("display", "none");
+  }
 
-    // Load world map data (you can replace this with your map data)
-    d3.json("https://unpkg.com/world-atlas@1.1.4/world/50m.json").then(
-      (world) => {
-        const countries = topojson.feature(world, world.objects.countries);
+  // Add interactivity to the rectangles
+  svg
+    .selectAll("rect")
+    .data(coordinates)
+    .enter()
+    .append("rect")
+    .attr("x", (d) => xScale(d[1]))
+    .attr("y", (d) => yScale(d[0]))
+    .attr("width", 10)
+    .attr("height", 10)
+    .style("fill", (d) => colorScale(Math.random()))
+    .on("mouseover", showTooltip) // Show tooltip on hover
+    .on("mousemove", showTooltip) // Follow the mouse
+    .on("mouseout", hideTooltip); // Hide tooltip when not hovering
+});
 
-        g.selectAll("path")
-          .data(countries.features)
-          .enter()
-          .append("path")
-          .attr("class", "country")
-          .attr("d", pathGenerator)
-          .attr("fill", (d) => {
-            const apiCountryData = apiData.find((apiItem) => {
-              return (
-                apiItem.latitude === d3.geoCentroid(d)[1] &&
-                apiItem.longitude === d3.geoCentroid(d)[0]
-              );
-            });
+// Initialize the map
+const map = L.map("map").setView([0, 0], 2); // Center the map at (0, 0) with zoom level 2
 
-            return apiCountryData
-              ? colorScale(colorValue(apiCountryData))
-              : "gray"; // Use gray for countries with no data
-          })
-          .append("title")
-          .text((d) => {
-            const apiCountryData = apiData.find((apiItem) => {
-              return (
-                apiItem.latitude === d3.geoCentroid(d)[1] &&
-                apiItem.longitude === d3.geoCentroid(d)[0]
-              );
-            });
-
-            return apiCountryData
-              ? `Country: ${d.properties.name}, Speed: ${apiCountryData.speed}`
-              : "No data available";
-          });
-      }
-    );
-  };
-})(topojson, d3);
-(function (topojson, d3) {
-  "use strict";
-  const apiKey = "YwqTVOnuzH1enLJjupphAGv4E8yLgSIKewfsh9hI";
-  const apiUrl = `https://api.nasa.gov/DONKI/CMEAnalysis?startDate=2016-09-01&endDate=2016-09-30&mostAccurateOnly=true&speed=500&halfAngle=30&catalog=ALL&api_key=YwqTVOnuzH1enLJjupphAGv4E8yLgSIKewfsh9hI`;
-
-  fetch(apiUrl)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(`Network response was not ok: ${response.status}`);
-      }
-      return response.json();
-    })
-    .then((apiData) => {
-      if (Array.isArray(apiData)) {
-        render(apiData);
-      } else {
-        console.error("Data format from the API is not as expected.");
-      }
-    })
-    .catch((error) => {
-      console.error("Error fetching data:", error);
-    });
-
-  const render = (apiData) => {
-    const colorScale = d3.scaleOrdinal();
-
-    const colorValue = (d) => d.speed; // Use the "speed" property for coloring
-
-    colorScale
-      .domain(apiData.map(colorValue))
-      .domain(colorScale.domain().sort().reverse())
-      .range(d3.schemeSpectral[colorScale.domain().length]);
-
-    const svg = d3.select("svg");
-
-    const projection = d3.geoNaturalEarth1();
-    const pathGenerator = d3.geoPath().projection(projection);
-
-    const g = svg.append("g");
-
-    g.append("path")
-      .attr("class", "sphere")
-      .attr("d", pathGenerator({ type: "Sphere" }));
-
-    svg.call(
-      d3.zoom().on("zoom", () => {
-        g.attr("transform", d3.event.transform);
-      })
-    );
-
-    // Load world map data (you can replace this with your map data)
-    d3.json("https://unpkg.com/world-atlas@1.1.4/world/50m.json").then(
-      (world) => {
-        const countries = topojson.feature(world, world.objects.countries);
-
-        g.selectAll("path")
-          .data(countries.features)
-          .enter()
-          .append("path")
-          .attr("class", "country")
-          .attr("d", pathGenerator)
-          .attr("fill", (d) => {
-            const apiCountryData = apiData.find((apiItem) => {
-              return (
-                apiItem.latitude === d3.geoCentroid(d)[1] &&
-                apiItem.longitude === d3.geoCentroid(d)[0]
-              );
-            });
-
-            return apiCountryData
-              ? colorScale(colorValue(apiCountryData))
-              : "gray"; // Use gray for countries with no data
-          })
-          .append("title")
-          .text((d) => {
-            const apiCountryData = apiData.find((apiItem) => {
-              return (
-                apiItem.latitude === d3.geoCentroid(d)[1] &&
-                apiItem.longitude === d3.geoCentroid(d)[0]
-              );
-            });
-
-            return apiCountryData
-              ? `Country: ${d.properties.name}, Speed: ${apiCountryData.speed}`
-              : "No data available";
-          });
-      }
-    );
-  };
-})(topojson, d3);
+// Add a tile layer (you can use different tile providers)
+L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+  attribution:
+    '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+}).addTo(map);
