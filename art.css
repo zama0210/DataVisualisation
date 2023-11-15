@@ -278,10 +278,30 @@ a {
   transform: translate(20%, 30%);
 }
 
-circle {
-  fill: #ffd700;
-  stroke: #000;
-  stroke-width: 2;
+/* Add some basic styling for the SVG container */
+#timeline svg {
+  background-color: #f5f5fa;
+  border: 1px solid #ccc;
+  width: 800px;
+  height: 400px;
+}
+
+/* Style the circles representing data points */
+#timeline circle {
+  fill: #f84c0b;
+  stroke: #fff;
+  stroke-width: 2px;
+}
+
+/* Style the tooltip */
+.tooltip rect {
+  fill: white;
+  stroke: black;
+}
+
+.tooltip text {
+  font-size: 12px;
+  text-anchor: middle;
 }
 
 /* =================FOOTER================================ */

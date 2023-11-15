@@ -1,108 +1,71 @@
-const apiKey = "Sa299kdvXScK6Wcy0lQlaVJnencvbsZoQeBqxSex";
-const apiUrl =
-  "https://api.nasa.gov/DONKI/CMEAnalysis?startDate=2016-09-01&endDate=2016-09-30&mostAccurateOnly=true&speed=500&halfAngle=30&catalog=ALL&api_key=" +
-  apiKey;
+const apiKey = "YCWVhz1RMYXTkNqcUaOn8JfGubpSlbMzIyi8FwH6";
+const apiUrl = `https://api.nasa.gov/DONKI/CMEAnalysis?startDate=2016-09-01&endDate=2016-09-30&mostAccurateOnly=true&speed=500&halfAngle=30&catalog=ALL&api_key=${apiKey}`;
 
-fetch(apiUrl)
-  .then((response) => {
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-    return response.json();
-  })
+// Fetch data from the API
+d3.json(apiUrl)
   .then((data) => {
-    console.log("API Data:", data);
+    // Process the data
+    const processedData = data.map((d) => ({
+      type: d.type,
+      speed: d.speed,
+      note: d.note,
+      time: d.time21_5, // Assuming time is in the time21_5 property
+      latitude: d.latitude,
+      longitude: d.longitude,
+      halfAngle: d.halfAngle,
+    }));
 
-    // Check if the data array is not empty
-    if (Array.isArray(data) && data.length > 0) {
-      // Process the data and extract relevant information
-      const spiralsData = data
-        .map((entry) => {
-          const cmeData = entry.cmeAnalyses;
+    // Set up the SVG canvas
+    const width = 800;
+    const height = 600;
+    const svg = d3
+      .select("#chart-container")
+      .append("svg")
+      .attr("width", width)
+      .attr("height", height);
 
-          if (cmeData && cmeData.length > 0) {
-            return {
-              date: new Date(entry.activityStartTime),
-              speed: cmeData[0].cmeSpeed,
-              longitude: cmeData[0].cmeLongitude,
-              latitude: cmeData[0].cmeLatitude,
-            };
-          } else {
-            console.warn("Missing CME analysis data in entry:", entry);
-            return null; // Skip this entry if CME analysis data is missing
-          }
-        })
-        .filter((entry) => entry !== null); // Filter out entries with missing CME analysis data
+    // Define scales for bubble size and color
+    const sizeScale = d3
+      .scaleLinear()
+      .domain([0, d3.max(processedData, (d) => d.speed)])
+      .range([5, 30]);
 
-      console.log("Processed Data:", spiralsData);
+    // Create a d3-tip tooltip
+    const tip = d3
+      .tip()
+      .attr("class", "d3-tip")
+      .offset([-10, 0])
+      .html(
+        (d) =>
+          `<strong>Type:</strong> ${d.type}<br><strong>Speed:</strong> ${d.speed}<br><strong>Note:</strong> ${d.note}<br><strong>Time:</strong> ${d.time}<br><strong>Latitude:</strong> ${d.latitude}<br><strong>Longitude:</strong> ${d.longitude}<br><strong>Half Angle:</strong> ${d.halfAngle}`
+      );
 
-      // --- Unchanged Part ---
-      // Continue with the rest of your code for rendering the visualizations
+    // Call the tooltip on the SVG container
+    svg.call(tip);
 
-      // Set up the SVG container
-      const width = 800;
-      const height = 800;
-
-      const svg = d3
-        .select("body")
-        .append("svg")
-        .attr("width", width)
-        .attr("height", height);
-
-      // Define scales
-      const radiusScale = d3
-        .scaleLinear()
-        .domain([0, d3.max(spiralsData, (d) => d.speed)])
-        .range([10, 200]);
-
-      // Create a radial scale for positioning
-      const radialScale = d3
-        .scaleLinear()
-        .domain([0, spiralsData.length])
-        .range([0, 2 * Math.PI]);
-
-      // Create a color scale based on speed
-      const colorScale = d3
-        .scaleSequential(d3.interpolateBlues)
-        .domain([0, d3.max(spiralsData, (d) => d.speed)]);
-
-      // Create a tooltip
-      const tooltip = d3
-        .select("body")
-        .append("div")
-        .attr("class", "tooltip")
-        .style("opacity", 0);
-
-      // Create spirals using D3.js
-      const spiral = d3
-        .lineRadial()
-        .angle((d, i) => radialScale(i))
-        .radius((d) => radiusScale(d.speed));
-
-      svg
-        .append("path")
-        .datum(spiralsData)
-        .attr("d", spiral)
-        .attr("fill", "none")
-        .attr("stroke", (d) => colorScale(d.speed))
-        .attr("stroke-width", 2)
-        .on("mouseover", (d) => {
-          tooltip.transition().duration(200).style("opacity", 0.9);
-          tooltip
-            .html(
-              `<strong>Date:</strong> ${d.date.toISOString()}<br><strong>Speed:</strong> ${
-                d.speed
-              } km/s`
-            )
-            .style("left", d3.event.pageX + 10 + "px")
-            .style("top", d3.event.pageY - 28 + "px");
-        })
-        .on("mouseout", () => {
-          tooltip.transition().duration(500).style("opacity", 0);
-        });
-      // -----------------------
-    } else {
-      console.error("Invalid data format:", data);
-    }
+    // Create bubbles with tooltips
+    svg
+      .selectAll("circle")
+      .data(processedData)
+      .enter()
+      .append("circle")
+      .attr("cx", (d) => Math.random() * (width - 100) + 50) // Random x position for demonstration
+      .attr("cy", (d) => Math.random() * (height - 100) + 50) // Random y position for demonstration
+      .attr("r", (d) => sizeScale(d.speed))
+      .attr("fill", () => getRandomColor())
+      .attr("stroke", "black")
+      .attr("stroke-width", 1)
+      .on("mouseover", tip.show) // Show the tooltip on mouseover
+      .on("mouseout", tip.hide); // Hide the tooltip on mouseout
   })
   .catch((error) => console.error("Error fetching data:", error));
+
+// Function to generate a random color
+function getRandomColor() {
+  const letters = "0123456789ABCDEF";
+  let color = "#";
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}

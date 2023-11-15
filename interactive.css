@@ -280,7 +280,7 @@ a {
   line-height: 1.5;
   font-weight: bold;
   padding: 12px;
-  background: rgba(0, 0, 0, 0.8);
+  background: #333333;
   color: #fff;
   border-radius: 5px;
   display: inline-block; /* Display tooltips in blocks */

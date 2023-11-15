@@ -273,15 +273,28 @@ a {
 }
 
 /* ====================================DATA DRIVEN ART======================= */
+#art {
+  transform: translate(20%, 50%);
+}
 
-.tooltip {
-  position: absolute;
-  background-color: white;
-  padding: 10px;
-  border: 1px solid #ccc;
+.d3-tip {
+  line-height: 1.5;
+  font-weight: bold;
+  padding: 12px;
+  background: #333333;
+  color: #fff;
   border-radius: 5px;
+  display: inline-block; /* Display tooltips in blocks */
+  max-width: 200px; /* Set a maximum width for tooltips */
+  text-align: left; /* Align text to the left within the tooltips */
+  white-space: wrap; /* Prevent line breaks within tooltips */
+  position: absolute;
+  z-index: 10;
   pointer-events: none;
-  opacity: 0;
+}
+.d3-tip:after {
+  border: none;
+  box-shadow: none;
 }
 
 /* =================FOOTER================================ */

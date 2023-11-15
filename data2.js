@@ -7,7 +7,7 @@
   const height = +svg.attr("height");
 
   const render = (data) => {
-    const title = "NASA CME Analysis";
+    const title = "CMEs: Speed vs. Half Angle";
 
     // Replace these data access functions with the appropriate ones for NASA API data
 
@@ -82,7 +82,7 @@
   };
 
   // Fetch data from NASA API
-  const apiKey = "Sa299kdvXScK6Wcy0lQlaVJnencvbsZoQeBqxSex";
+  const apiKey = "YCWVhz1RMYXTkNqcUaOn8JfGubpSlbMzIyi8FwH6";
   const apiUrl = `https://api.nasa.gov/DONKI/CMEAnalysis?startDate=2016-09-01&endDate=2016-09-30&mostAccurateOnly=true&speed=500&halfAngle=30&catalog=ALL&api_key=${apiKey}`;
 
   fetch(apiUrl)

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data Visualisation planning</title>
+    <link rel="stylesheet" type="text/css" href="blog.css" />
+    <link
+      rel="stylesheet"
+      href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <div class="header-main">
+          <div class="logo">
+            <a href="index.html">2429549</a>
+          </div>
+          <div class="open-nav-menu">
+            <span></span>
+          </div>
+          <div class="menu-overlay"></div>
+
+          <nav class="nav-menu">
+            <div class="close-nav-menu">
+              <img src="/images/close.svg" alt="close" />
+            </div>
+            <ul class="menu">
+              <li class="menu-item">
+                <a href="index.html">Home</a>
+              </li>
+              <li class="menu-item">
+                <a href="index.html#overview">Overview</a>
+              </li>
+
+              <li class="menu-item menu-item-has-children">
+                <a href="#" data-toggle="sub-menu"
+                  >Academics <i class="plus"></i
+                ></a>
+                <ul class="sub-menu">
+                  <li class="menu-item">
+                    <a href="blog.html">Blog</a>
+                  </li>
+
+                  <li class="menu-item">
+                    <a href="wireframes.html">Wireframes</a>
+                  </li>
+                  <li class="menu-item">
+                    <a href="updatedwireframes.html">Updated Wireframes</a>
+                  </li>
+                  <li class="menu-item">
+                    <a href="styleguide.html">Syle Guide</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="menu-item menu-item-has-children">
+                <a href="#" data-toggle="sub-menu">Data <i class="plus"></i></a>
+                <ul class="sub-menu">
+                  <li class="menu-item">
+                    <a href="data.html">Speed vs. Time</a>
+                  </li>
+
+                  <li class="menu-item">
+                    <a href="data2.html">Speed vs. Half Angle</a>
+                  </li>
+
+                  <li class="menu-item">
+                    <a href="interactive.html">Interactive Graph</a>
+                  </li>
+                  <li class="menu-item">
+                    <a href="art.html">Data Art</a>
+                  </li>
+                  <li class="menu-item">
+                    <a href="art2.html">Exam Data Art</a>
+                  </li>
+                  <li class="menu-item">
+                    <a href="dataexp.html">Data Planning</a>
+                  </li>
+                </ul>
+              </li>
+
+              <div class="nav-toggle" id="nav-toggle">
+                <i class="ri-menu-fill"></i>
+              </div>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <section class="post-header">
+      <div class="poheader-content post-container">
+        <h2 class="poheader-title">Data Visualization Planning</h2>
+        <img
+          src="images/17 Tips for Successful Planner Organization.jpeg"
+          alt="Picture of abstract graph "
+          class="poheader-img"
+        />
+      </div>
+    </section>
+
+    <section class="post-content post-container">
+      <div class="leftcolumn">
+        <h2 class="sub-heading">Static Data</h2>
+        <p class="post-text">
+          I intended to showcase how data was measured with the Coronal Mass
+          Ejections by using a speed graph would show a relationship between
+          speed and other data. I decided to use Time and the Half Angle as I
+          believed that it would offer a better understanding to viewers as a
+          speed graph is part of the basic understanding of Physical Sciences. I
+          played around with which graph would better display the information
+          needed and I made sure that what I chose would show sufficient data.
+          This is why I chose a scatter plot for Speed vs. Time and a line graph
+          for the Speed vs. Half-Angle graph.
+        </p>
+
+        <h2 class="sub-heading">Interactive Data</h2>
+        <p class="post-text">
+          I decided against using a sophisticated data visualization tool and
+          focused more on the fact that the line graph did not transfer the
+          data's information well. I decided to create an interactive line
+          graph. The interactivity comes from the tooltips that users will find
+          when they hover over the circles at the beginning and end of the line.
+        </p>
+
+        <h2 class="sub-heading">Data Art</h2>
+        <p class="post-text">
+          For the creation of this data art, I determined the necessary
+          information for the chart, including the event date, CME speed,
+          half-angle, and catalog. Next, I sketched out a basic layout for the
+          chart, taking into account the use of D3.js for data visualization and
+          interaction. To ensure organization and flexibility, I opted to create
+          a modular and reusable function, aptly named "createTimelineChart".
+          This function was designed to take in various parameters, such as the
+          target selector, data, and configuration options. Throughout the
+          planning process, I paid close attention to potential errors,
+          implementing measures to handle them, such as checking for empty
+          datasets and properly parsing dates. Finally, I addressed styling
+          concerns by adding CSS rules to create a visually pleasing and
+          cohesive presentation of the timeline chart.
+        </p>
+
+        <p class="post-text">
+          For the Exam Data Art I carefully identified the key data attributes,
+          such as type, speed, time, latitude, longitude, half angle, and note.
+          After much consideration, I decided to use a Circular Packing chart
+          because of its ability to display hierarchical data in a circular
+          layout, providing a unique and visually appealing perspective. The
+          code implementation involved processing the API data, formatting it to
+          fit the Circular Packing structure, and setting up the necessary
+          scales and elements. I also added labels and tooltips to enhance
+          interactivity and provide comprehensive information about each data
+          point. Intended to randomise the position and colour of the circles
+          for a more engaging experience
+        </p>
+
+        <footer class="footer-distributed">
+          <div class="footer-left">
+            <h3>Zamahayise<span>Hlatshwayo</span></h3>
+
+            <p class="footer-links">
+              <a href="index.html">Home</a>
+              |
+              <a href="index.html#overview">Overview</a>
+              |
+              <a href="wireframes.html">Wireframes</a>
+              |
+              <a href="blog.html">Blog</a>
+              |
+              <a href="styleguide.html">Styleguide</a>
+              |
+              <a href="data.html">Speed vs. Time</a>
+              |
+              <a href="data2.html">Speed vs. Half Angle</a>
+              |
+              <a href="interactive.html">CME Occurence</a>
+            </p>
+
+            <p class="footer-company-name">
+              Copyright © 2023 <strong>2429549</strong> All rights reserved
+            </p>
+          </div>
+
+          <div class="footer-center">
+            <div>
+              <i class="fa fa-map-marker"></i>
+              <p><span> Braamfontein</span> Johannesburg</p>
+            </div>
+            <div>
+              <i class="fa fa-envelope"></i>
+              <p>
+                <a href="mailto:2429549@students.wits.ac.za"
+                  >2429549@students.wits.ac.za</a
+                >
+              </p>
+            </div>
+          </div>
+          <div class="footer-right">
+            <p class="footer-company-about">
+              <span>About the website</span>
+              The <strong>Coronal Mass Ejection Analysis API</strong> is a NASA
+              API under the DONKI API. This website aims to provide more
+              information of Coronal Mass Ejections as well as use the API to
+              visualise data.
+            </p>
+            <div class="footer-icons">
+              <a href="https://github.com/zama0210"
+                ><i class="fa fa-github"></i
+              ></a>
+              <a href="https://instagram.com/zmhs.02?igshid=OGQ5ZDc2ODk2ZA=="
+                ><i class="fa fa-instagram"></i
+              ></a>
+              <a
+                href="https://www.linkedin.com/in/zamahayise-hlatshwayo-4b7ba923a"
+                ><i class="fa fa-linkedin"></i
+              ></a>
+            </div>
+          </div>
+        </footer>
+
+        <script src="script.js"></script>
+      </div>
+    
+  </body>
+</html>
