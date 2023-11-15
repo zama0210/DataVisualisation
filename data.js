@@ -1,91 +1,128 @@
-// Define the dimensions and margins for the heatmap
-const margin = { top: 20, right: 20, bottom: 20, left: 20 };
-const width = 800 - margin.left - margin.right;
-const height = 400 - margin.top - margin.bottom;
+(function (d3) {
+  "use strict";
 
-// Append an SVG element to the heatmap container
-const svg = d3
-  .select("#heatmap-container")
-  .append("svg")
-  .attr("width", width + margin.left + margin.right)
-  .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-  .attr("transform", `translate(${margin.left},${margin.top})`);
+  // Include d3-tip library
+  const tip = d3
+    .tip()
+    .attr("class", "d3-tip")
+    .offset([-10, 0])
+    .html((d) => `Speed: ${d.speed} km/s<br>Half Angle: ${d.halfAngle}°`);
 
-// Define the color scale for the heatmap
-const colorScale = d3.scaleSequential(d3.interpolateReds);
+  const svg = d3.select("svg");
 
-// Fetch data from the NASA API
-const apiKey = "Sa299kdvXScK6Wcy0lQlaVJnencvbsZoQeBqxSex";
-const apiUrl = `https://api.nasa.gov/DONKI/CMEAnalysis?startDate=2016-09-01&endDate=2016-09-30&mostAccurateOnly=true&speed=500&halfAngle=30&catalog=ALL&api_key=${apiKey}`;
+  const width = +svg.attr("width");
+  const height = +svg.attr("height");
 
-d3.json(apiUrl).then((data) => {
-  // Process the data and extract latitudes and longitudes
-  const coordinates = data.map((d) => [d.latitude, d.longitude]);
+  svg.call(tip);
 
-  // Create a grid for the heatmap
-  const xScale = d3
-    .scaleLinear()
-    .domain([
-      d3.min(coordinates, (d) => d[1]),
-      d3.max(coordinates, (d) => d[1]),
-    ])
-    .range([0, width]);
+  const render = (data) => {
+    const title = "NASA CME Analysis";
 
-  const yScale = d3
-    .scaleLinear()
-    .domain([
-      d3.min(coordinates, (d) => d[0]),
-      d3.max(coordinates, (d) => d[0]),
-    ])
-    .range([height, 0]);
+    // Replace these data access functions with the appropriate ones for NASA API data
 
-  // Create a tooltip element
-  const tooltip = d3
-    .select("body")
-    .append("div")
-    .style("position", "absolute")
-    .style("background", "rgba(0, 0, 0, 0.7)")
-    .style("color", "white")
-    .style("padding", "5px")
-    .style("border-radius", "3px")
-    .style("display", "none");
+    const xValue = (d) => d.halfAngle; //x-axis:Speed
+    const circleRadius = 5;
+    const xAxisLabel = "Half Angle (°)";
 
-  // Create a function to display the tooltip when hovering over a rectangle
-  function showTooltip(d) {
-    tooltip
-      .html(`Latitude: ${d[0]}<br>Longitude: ${d[1]}`)
-      .style("left", d3.event.pageX + 10 + "px")
-      .style("top", d3.event.pageY - 30 + "px")
-      .style("display", "block");
-  }
+    const yValue = (d) => d.speed; // y-axis: Speed
+    const yAxisLabel = "Speed (km/s)";
 
-  // Create a function to hide the tooltip when not hovering over a rectangle
-  function hideTooltip() {
-    tooltip.style("display", "none");
-  }
+    const margin = { top: 60, right: 40, bottom: 88, left: 105 };
+    const innerWidth = width - margin.left - margin.right;
+    const innerHeight = height - margin.top - margin.bottom;
 
-  // Add interactivity to the rectangles
-  svg
-    .selectAll("rect")
-    .data(coordinates)
-    .enter()
-    .append("rect")
-    .attr("x", (d) => xScale(d[1]))
-    .attr("y", (d) => yScale(d[0]))
-    .attr("width", 10)
-    .attr("height", 10)
-    .style("fill", (d) => colorScale(Math.random()))
-    .on("mouseover", showTooltip) // Show tooltip on hover
-    .on("mousemove", showTooltip) // Follow the mouse
-    .on("mouseout", hideTooltip); // Hide tooltip when not hovering
-});
+    const xScale = d3
+      .scaleLinear()
+      .domain(d3.extent(data, xValue))
+      .range([0, innerWidth])
+      .nice();
 
-// Initialize the map
-const map = L.map("map").setView([0, 0], 2); // Center the map at (0, 0) with zoom level 2
+    const yScale = d3
+      .scaleLinear()
+      .domain(d3.extent(data, yValue))
+      .range([innerHeight, 0])
+      .nice();
 
-// Add a tile layer (you can use different tile providers)
-L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-  attribution:
-    '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-}).addTo(map);
+    const g = svg
+      .append("g")
+      .attr("transform", `translate(${margin.left},${margin.top})`);
+
+    const xAxis = d3.axisBottom(xScale).tickSize(-innerHeight).tickPadding(15);
+
+    const yAxis = d3.axisLeft(yScale).tickSize(-innerWidth).tickPadding(10);
+
+    const yAxisG = g.append("g").call(yAxis);
+    yAxisG.selectAll(".domain").remove();
+
+    yAxisG
+      .append("text")
+      .attr("class", "axis-label")
+      .attr("y", -60)
+      .attr("x", -innerHeight / 2)
+      .attr("fill", "black")
+      .attr("transform", `rotate(-90)`)
+      .attr("text-anchor", "middle")
+      .text(yAxisLabel);
+
+    const xAxisG = g
+      .append("g")
+      .call(xAxis)
+      .attr("transform", `translate(0,${innerHeight})`);
+
+    xAxisG.select(".domain").remove();
+
+    xAxisG
+      .append("text")
+      .attr("class", "axis-label")
+      .attr("y", 80)
+      .attr("x", innerWidth / 2)
+      .attr("fill", "black")
+      .text(xAxisLabel);
+
+    const lineGenerator = d3
+      .line()
+      .x((d) => xScale(xValue(d)))
+      .y((d) => yScale(yValue(d)))
+      .curve(d3.curveBasis);
+
+    g.append("path").attr("class", "line-path").attr("d", lineGenerator(data));
+
+    const circles = g
+      .selectAll("circle")
+      .data(data)
+      .enter()
+      .append("circle")
+      .attr("cx", (d) => xScale(xValue(d)))
+      .attr("cy", (d) => yScale(yValue(d)))
+      .attr("r", circleRadius)
+      .attr("fill", "steelblue")
+      .on("mouseover", tip.show)
+      .on("mouseout", tip.hide);
+
+    g.append("text").attr("class", "title").attr("y", -10).text(title);
+  };
+
+  // Fetch data from NASA API
+  const apiKey = "Sa299kdvXScK6Wcy0lQlaVJnencvbsZoQeBqxSex";
+  const apiUrl = `https://api.nasa.gov/DONKI/CMEAnalysis?startDate=2016-09-01&endDate=2016-09-30&mostAccurateOnly=true&speed=500&halfAngle=30&catalog=ALL&api_key=${apiKey}`;
+
+  fetch(apiUrl)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`Network response was not ok: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      console.log(data);
+      if (Array.isArray(data)) {
+        // Assuming the API response structure matches your provided structure
+        render(data);
+      } else {
+        console.error("Data format from the API is not as expected.");
+      }
+    })
+    .catch((error) => {
+      console.error("Error fetching data:", error);
+    });
+})(d3);

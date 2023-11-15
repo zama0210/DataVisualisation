@@ -274,14 +274,14 @@ a {
 
 /* ====================================DATA DRIVEN ART======================= */
 
-#art {
-  transform: translate(20%, 30%);
-}
-
-circle {
-  fill: #ffd700;
-  stroke: #000;
-  stroke-width: 2;
+.tooltip {
+  position: absolute;
+  background-color: white;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  pointer-events: none;
+  opacity: 0;
 }
 
 /* =================FOOTER================================ */

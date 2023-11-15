@@ -4,9 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Heat Map</title>
-    <link rel="stylesheet" type="text/css" href="styleguide.css" />
 
-    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="interactive.css" />
     <link
       rel="stylesheet"
       href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
@@ -51,6 +50,9 @@
                     <a href="wireframes.html">Wireframes</a>
                   </li>
                   <li class="menu-item">
+                    <a href="updatedwireframes.html">Updated Wireframes</a>
+                  </li>
+                  <li class="menu-item">
                     <a href="styleguide.html">Syle Guide</a>
                   </li>
                 </ul>
@@ -67,10 +69,13 @@
                   </li>
 
                   <li class="menu-item">
-                    <a href="interactive.html">Choropleth Map</a>
+                    <a href="interactive.html">Interactive Graph</a>
                   </li>
                   <li class="menu-item">
                     <a href="art.html">Data Art</a>
+                  </li>
+                  <li class="menu-item">
+                    <a href="art2.html">Exam Data Art</a>
                   </li>
                 </ul>
               </li>
@@ -83,12 +88,25 @@
         </div>
       </div>
     </header>
+    <section id="line-graph">
+      <svg width="800" height="400"></svg>
+    </section>
 
-    <div id="heatmap-container">
-      <!-- This div will contain the heatmap -->
-    </div>
-    <div id="map" style="height: 400px"></div>
-    <div id="tooltip"></div>
+    <p class="graph-text">
+      This line graph showcases the correlation between two key variables - the
+      half angle (in degrees) and the speed (in km/s) of CMEs - over a specific
+      time frame. Each dot on the chart represents a single CME event, with the
+      x-axis denoting the half angle and the y-axis representing the speed. By
+      connecting these data points, the chart reveals important trends and
+      patterns in CME behavior over time. Furthermore, the chart is equipped
+      with tooltips that provide detailed information about each data point,
+      such as the speed and half angle, making it easier for users to interact
+      with and understand the data. To access this data, the code utilizes
+      NASA's API, specifically the CMEAnalysis endpoint, with the help of an API
+      key for secure authentication. Ultimately, this graph aims to offer
+      valuable insights into the characteristics of CME events within the
+      specified time period.
+    </p>
 
     <footer class="footer-distributed">
       <div class="footer-left">
@@ -149,6 +167,10 @@
         </div>
       </div>
     </footer>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <!-- Include d3-tip library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.9.1/d3-tip.min.js"></script>
+
     <script src="script.js"></script>
     <script src="data.js"></script>
   </body>

@@ -1,0 +1,50 @@
+.gallery {
+  margin: 50px 50px;
+  align-items: center;
+  transform: translate(0%, 0%);
+}
+.gallery img {
+  padding: 5px;
+  transition: 1s;
+
+  height: 30%;
+}
+
+.gallery img:hover {
+  transform: scale(1.1);
+}
+
+@media screen and (max-width: 800px) {
+  .leftcolumn,
+  .rightcolumn {
+    width: 100%;
+    padding: 0;
+  }
+}
+
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+  h1 {
+    font-size: 100px;
+  }
+
+  h2 {
+    font-size: 40px;
+    transform: translate(-120%, 30%);
+  }
+
+  h4 {
+    font-size: 30px;
+  }
+
+  .container {
+    padding: 0 100px;
+  }
+
+  header nav {
+    padding: 20px 40px;
+  }
+
+  footer .footer-content {
+    padding: 40px;
+  }
+}

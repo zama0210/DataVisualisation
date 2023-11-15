@@ -1,62 +1,46 @@
-// Initialize the map with specific size
-const map = L.map("map", {
-  center: [0, 0],
-  zoom: 2,
-  maxBounds: [
-    [-90, -180],
-    [90, 180],
-  ], // Restrict the map to the entire world
-  maxBoundsViscosity: 1.0, // Adjust this value as needed
-  maxZoom: 10,
-  minZoom: 2,
-  preferCanvas: true, // Optional, for better performance with many markers
-  zoomControl: false, // Remove default zoom control
-  scrollWheelZoom: false, // Disable scroll wheel zoom
-});
-
-// Add a tile layer (OpenStreetMap, you can choose different map providers)
-L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-  attribution:
-    '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-}).addTo(map);
-
-//NASA API URL for CME Analysis
+if (typeof d3 === "undefined") {
+  console.error("D3.js is not loaded. Check your script source.");
+} else {
+  console.log("D3.js is loaded!");
+}
 const apiKey = "Sa299kdvXScK6Wcy0lQlaVJnencvbsZoQeBqxSex";
 const apiUrl = `https://api.nasa.gov/DONKI/CMEAnalysis?startDate=2016-09-01&endDate=2016-09-30&mostAccurateOnly=true&speed=500&halfAngle=30&catalog=ALL&api_key=${apiKey}`;
 
-// Define a custom circular marker icon
-const circleMarkerIcon = L.divIcon({
-  className: "cme-marker",
-  iconSize: [20, 20], // Size of the circle
-  html: '<div class="cme-circle"></div>',
-});
-
-// Fetch data from the NASA API
+// Fetch data from the NASA DONKI API
 fetch(apiUrl)
   .then((response) => response.json())
   .then((data) => {
-    console.log(data); // Log the fetched data to the console
-
-    // Process the CME data and create circular markers on the map
-    data.forEach((cme) => {
-      const latitude = cme.lat;
-      const longitude = cme.long;
-
-      if (latitude && longitude) {
-        const marker = L.marker([latitude, longitude], {
-          icon: circleMarkerIcon,
-        }).addTo(map);
-        marker.bindPopup(
-          `CME Date: ${cme.activityID}<br>Speed: ${cme.speed} km/s`
-        );
-      }
-    });
+    // Process the data and create an artistic D3.js chart
+    createArt(data);
   })
-  .catch((error) => {
-    console.error("An error occurred while fetching CME data:", error);
-  });
+  .catch((error) => console.error("Error fetching data:", error));
 
-L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-  attribution:
-    '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-}).addTo(map);
+// Create an artistic D3.js chart
+function createArt(data) {
+  // Extract relevant information from the API response
+  const cmeEvents = data.filter((event) => event.activityID);
+
+  // Set up SVG dimensions
+  const width = 800;
+  const height = 400;
+
+  // Create an SVG container
+  const svg = d3
+    .select("#chart")
+    .append("svg")
+    .attr("width", width)
+    .attr("height", height)
+    .style("background-color", "#f0f0f0");
+
+  // Create circles with varying sizes and delays
+  svg
+    .selectAll("circle")
+    .data(cmeEvents)
+    .enter()
+    .append("circle")
+    .attr("cx", width / 2) // Start all circles from the center horizontally
+    .attr("cy", height / 2) // Start all circles from the center vertically
+    .attr("r", (d) => d.speed / 5) // Set radius based on speed
+    .attr("fill", "orange")
+    .attr("opacity", 0.7);
+}

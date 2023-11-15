@@ -271,24 +271,83 @@ a {
     display: flex;
   }
 }
-
-/* ====================================DATA DRIVEN ART======================= */
-
-#art {
-  transform: translate(20%, 30%);
+/* =======================================INTERACTIVE GRAPH========================= */
+/* Tooltip styles */
+#line-graph {
+  transform: translate(20%, 40%);
+}
+.d3-tip {
+  line-height: 1.5;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 5px;
+  display: inline-block; /* Display tooltips in blocks */
+  max-width: 200px; /* Set a maximum width for tooltips */
+  text-align: left; /* Align text to the left within the tooltips */
+  white-space: nowrap; /* Prevent line breaks within tooltips */
+  position: absolute;
+  z-index: 10;
+  pointer-events: none;
 }
 
-circle {
-  fill: #ffd700;
-  stroke: #000;
+/* Line path styles */
+.line-path {
+  fill: none;
+  stroke: #f84c0b;
   stroke-width: 2;
 }
 
-/* =================FOOTER================================ */
+/* Circle styles */
+circle {
+  fill: #f84c0b;
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+/* Axis label styles */
+.axis-label {
+  font-size: 20px;
+}
+
+/* Title styles */
+.title {
+  font-size: 48px;
+  font-weight: bold;
+  text-anchor: middle;
+  transform: translateX(30%);
+}
+
+/* Remove default tooltip styling */
+.d3-tip:after {
+  border: none;
+  box-shadow: none;
+}
+
+/* Optional hover effect for circles */
+circle:hover {
+  fill: #f84c0b;
+  opacity: 1;
+}
+
+/* =======================PARAGRAPH============================= */
+.graph-text {
+  font-size: 1rem;
+  line-height: 1.7rem;
+  transform: translateY(90%);
+  max-width: 800px;
+  margin: auto;
+  width: 100%;
+}
+
+/* ======================================FOOTER==========================================*/
+/* The footer is fixed to the bottom of the page */
+
 footer {
   position: fixed;
   bottom: 0;
-  transform: translateY(100%);
+  transform: translateY(160%);
 }
 
 @media (max-height: 800px) {
