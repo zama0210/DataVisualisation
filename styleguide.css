@@ -748,6 +748,17 @@ text {
   fill: #f84c0b;
 }
 
+/* =====================================PARAGRAPH============================================= */
+
+.graph-text {
+  font-size: 1rem;
+  line-height: 1.7rem;
+  transform: translateY(60%);
+  max-width: 800px;
+  margin: auto;
+  width: 100%;
+}
+
 /* ======================================FOOTER==========================================
 /* The footer is fixed to the bottom of the page */
 
